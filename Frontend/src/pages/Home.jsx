@@ -9,11 +9,11 @@ import { MdOutlineAddBox, MdOutlineDelete } from "react-icons/md";
 export default function HomeBooks() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
-  
+  const apiUrl = import.meta.env.VITE_API_URL;
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:5555/books")
+      .get(`${apiUrl}/books`)
       .then((response) => {
         setBooks(response.data);
         setLoading(false);

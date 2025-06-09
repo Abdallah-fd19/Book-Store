@@ -14,10 +14,11 @@ export default function EditBooks() {
   const navigate = useNavigate();
   const {id} = useParams();
 
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(()=>{
     setLoading(true);
-    axios.get(`http://localhost:5555/books/${id}`)
+    axios.get(`${apiUrl}/books/${id}`)
     .then((response)=>{
       const book = response.data;
       setTitle(book.title);

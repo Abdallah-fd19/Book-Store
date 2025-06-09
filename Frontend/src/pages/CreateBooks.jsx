@@ -11,7 +11,7 @@ export default function CreateBooks() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
+  const apiUrl = import.meta.env.VITE_API_URL;
   const handleSaveBook = () => {
     // Reset any previous errors
     setError("");
@@ -46,7 +46,7 @@ export default function CreateBooks() {
 
     setLoading(true);
     axios
-      .post("http://localhost:5555/books", data)
+      .post(`${apiUrl}/books`, data)
       .then(() => {
         setLoading(false);
         navigate("/");

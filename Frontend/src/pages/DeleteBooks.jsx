@@ -9,10 +9,10 @@ export default function DeleteBooks(){
  const [error, setError] = useState('');
  const {id} = useParams();
  const navigate = useNavigate();
- 
+ const apiUrl = import.meta.env.VITE_API_URL;
  useEffect(() => {
   isLoading(true);
-  axios.delete(`http://localhost:5555/books/${id}`)
+  axios.delete(`${apiUrl}/books/${id}`)
   .then(() => {
    isLoading(false);
    // Wait 2 seconds before redirecting to home page
