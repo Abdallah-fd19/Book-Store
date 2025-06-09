@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
 import axios from "axios";
@@ -13,6 +13,23 @@ export default function EditBooks() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const {id} = useParams();
+
+
+  useEffect(()=>{
+    setLoading(true);
+    axios.get(`http://localhost:5555/books/${id}`)
+    .then((response)=>{
+      const book = response.data;
+      setTitle(book.title);
+      setAuthor(book.author);
+      setPublishYear(book.publishYear);
+      setLoading(false);
+    })
+    .catch((err)=>{
+      setError("Failed to fetch book data", err);
+      setLoading(false);
+    })
+  },[id])
 
   const handleSaveBook = () => {
     // Reset any previous errors
