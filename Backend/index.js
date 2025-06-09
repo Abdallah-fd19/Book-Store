@@ -12,11 +12,11 @@ app.use(express.json());
 // Option 1: Allow All Origins With Default Of Cors;
 app.use(cors())
 // Option 2: Allow Only Custom Cors;
-// app.use(cors({
-//   origin:'http://localhost:5555',
-//   methods:['GET', 'POST', 'PUT', 'DELETE'],
-//   allowedHeaders:['Content-Type'],
-// }));
+app.use(cors({
+  origin:['https://book-store-8k6.pages.dev/', 'http://localhost:5173'],
+  methods:['GET', 'POST', 'PUT', 'DELETE'],
+  credentials:true,
+}));
 app.use('/books', booksRoute);
 
 
